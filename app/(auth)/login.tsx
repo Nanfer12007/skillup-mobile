@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Link, router } from "expo-router";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
@@ -14,41 +16,45 @@ export default function Login() {
   }
 
   return (
-    <View className="flex-1 bg-white px-8 justify-center">
-      <Text className="text-4xl font-extrabold text-primary text-center mb-12">
-        SkillUp
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.logo}>SkillUp</Text>
 
-      <Text className="mb-1 text-gray-700">Email</Text>
-      <TextInput
-        placeholder="seuemail@gmail.com"
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-5 text-gray-800"
-        onChangeText={setEmail}
-      />
+      <Input placeholder="Email" onChangeText={setEmail} />
+      <Input placeholder="Senha" secureTextEntry onChangeText={setSenha} />
 
-      <Text className="mb-1 text-gray-700">Senha</Text>
-      <TextInput
-        placeholder="********"
-        secureTextEntry
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-6 text-gray-800"
-        onChangeText={setSenha}
-      />
+      <Button title="Entrar" onPress={handleLogin} />
 
-      <TouchableOpacity
-        className="bg-primary py-3 rounded-2xl mb-4"
-        onPress={handleLogin}
-      >
-        <Text className="text-center text-white text-lg font-semibold">
-          Entrar
+      <TouchableOpacity>
+        <Text style={styles.linkText}>
+          Não tem conta?
+          <Link href="/(auth)/signup" style={styles.link}> Criar conta</Link>
         </Text>
       </TouchableOpacity>
-
-      <Text className="text-center text-gray-600 mt-2">
-        Não tem conta?{" "}
-        <Link href="/(auth)/signup" className="text-primary font-medium">
-          Criar conta
-        </Link>
-      </Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  logo: {
+    fontSize: 40,
+    fontWeight: "800",
+    color: "#2563eb",
+    textAlign: "center",
+    marginBottom: 40,
+  },
+  linkText: {
+    textAlign: "center",
+    marginTop: 10,
+    fontSize: 16,
+  },
+  link: {
+    color: "#2563eb",
+    fontWeight: "600",
+  },
+});

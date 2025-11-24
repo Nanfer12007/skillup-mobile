@@ -1,46 +1,43 @@
 import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { ScrollView, Text, StyleSheet } from "react-native";
+import Button from "../../components/Button";
+import Card from "../../components/Card";
 import { getCursos } from "../../services/cursos";
 import { router } from "expo-router";
 
 export default function Cursos() {
   const [cursos, setCursos] = useState([]);
 
-  async function load() {
-    const r = await getCursos();
-    setCursos(r.data);
-  }
-
   useEffect(() => {
+    async function load() {
+      const r = await getCursos();
+      setCursos(r.data);
+    }
     load();
   }, []);
 
   return (
-    <ScrollView className="flex-1 bg-white p-6">
-      <Text className="text-2xl font-bold text-primary mb-6">
-        Cursos Disponíveis
-      </Text>
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>Cursos Disponíveis</Text>
 
-      <TouchableOpacity
-        className="bg-primary mb-6 py-3 rounded-xl"
-        onPress={() => router.push("/crud/create")}
-      >
-        <Text className="text-center text-white font-semibold text-lg">
-          Novo Curso +
-        </Text>
-      </TouchableOpacity>
+      <Button title="Novo Curso +" onPress={() => router.push("/(crud)/create")} />
 
       {cursos.map((item) => (
-        <TouchableOpacity
-          key={item.id}
-          className="bg-gray-100 p-4 mb-3 rounded-xl border border-gray-300"
-          onPress={() => router.push(`/crud/update?id=${item.id}`)}
-        >
-          <Text className="text-lg font-semibold text-gray-800">
+        <Card key={item.id}>
+          <Text
+            style={styles.course}
+            onPress={() => router.push(`/(crud)/update?id=${item.id}`)}
+          >
             {item.nome}
           </Text>
-        </TouchableOpacity>
+        </Card>
       ))}
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 24, backgroundColor: "#fff" },
+  title: { fontSize: 26, fontWeight: "700", color: "#2563eb", marginBottom: 20 },
+  course: { fontSize: 18, fontWeight: "600", color: "#333" },
+});

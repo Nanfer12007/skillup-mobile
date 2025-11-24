@@ -1,28 +1,25 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function Sobre() {
   return (
-    <View className="flex-1 p-6 bg-white">
-      <Text className="text-3xl font-bold text-primary mb-6">Sobre o SkillUp</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Sobre o SkillUp</Text>
 
-      <Text className="text-gray-800 text-lg mb-3">
+      <Text style={styles.paragraph}>
         Plataforma de Requalificação Profissional com IA.
       </Text>
+      <Text style={styles.paragraph}>ODS 4 — Educação de Qualidade</Text>
+      <Text style={styles.paragraph}>ODS 8 — Trabalho Decente</Text>
 
-      <Text className="text-gray-600 text-md mb-1">
-        ODS 4 — Educação de Qualidade
-      </Text>
-      <Text className="text-gray-600 text-md mb-4">
-        ODS 8 — Trabalho Decente e Crescimento Econômico
-      </Text>
-
-      <Text className="text-gray-500 text-sm mt-10">
-        Versão: 1.0.0
-      </Text>
-
-      <Text className="text-gray-500 text-sm">
-        Commit: f21c9a2
-      </Text>
+      <Text style={styles.version}>Versão: 1.0.0</Text>
+      <Text style={styles.version}>Commit: f21c9a2</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 24, backgroundColor: "#fff" },
+  title: { fontSize: 28, fontWeight: "700", color: "#2563eb", marginBottom: 20 },
+  paragraph: { fontSize: 16, marginBottom: 5 },
+  version: { fontSize: 12, marginTop: 20, color: "#666" },
+});

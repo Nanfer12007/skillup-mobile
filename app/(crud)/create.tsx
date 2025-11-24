@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { createCurso } from "../../services/cursos";
 import { router } from "expo-router";
 
@@ -12,20 +14,17 @@ export default function CreateCurso() {
   }
 
   return (
-    <View className="flex-1 p-6 bg-white">
-      <Text className="text-3xl font-bold text-primary mb-6">Novo Curso</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Novo Curso</Text>
 
-      <TextInput
-        placeholder="Nome do curso"
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-6"
-        onChangeText={setNome}
-      />
+      <Input placeholder="Nome do curso" onChangeText={setNome} />
 
-      <TouchableOpacity className="bg-primary py-3 rounded-xl" onPress={save}>
-        <Text className="text-center text-white font-semibold text-lg">
-          Salvar
-        </Text>
-      </TouchableOpacity>
+      <Button title="Salvar" onPress={save} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 24, backgroundColor: "#fff" },
+  title: { fontSize: 28, fontWeight: "700", color: "#2563eb", marginBottom: 20 },
+});

@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { router } from "expo-router";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 export default function Signup() {
   const [nome, setNome] = useState("");
@@ -12,33 +14,19 @@ export default function Signup() {
   }
 
   return (
-    <View className="flex-1 bg-white px-8 justify-center">
-      <Text className="text-3xl font-bold text-primary text-center mb-10">
-        Criar Conta
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Criar Conta</Text>
 
-      <TextInput
-        placeholder="Nome completo"
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-4"
-        onChangeText={setNome}
-      />
+      <Input placeholder="Nome Completo" onChangeText={setNome} />
+      <Input placeholder="Email" onChangeText={setEmail} />
+      <Input placeholder="Senha" secureTextEntry onChangeText={setSenha} />
 
-      <TextInput
-        placeholder="Email"
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-4"
-        onChangeText={setEmail}
-      />
-
-      <TextInput
-        placeholder="Senha"
-        secureTextEntry
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-6"
-        onChangeText={setSenha}
-      />
-
-      <TouchableOpacity className="bg-primary py-3 rounded-2xl" onPress={cadastrar}>
-        <Text className="text-center text-white text-lg font-semibold">Cadastrar</Text>
-      </TouchableOpacity>
+      <Button title="Cadastrar" onPress={cadastrar} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 24, justifyContent: "center", backgroundColor: "#fff" },
+  title: { fontSize: 30, fontWeight: "700", color: "#2563eb", textAlign: "center", marginBottom: 30 },
+});

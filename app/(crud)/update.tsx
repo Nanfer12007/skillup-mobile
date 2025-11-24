@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Alert } from "react-native";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { router, useLocalSearchParams } from "expo-router";
 import { getCursos, updateCurso, deleteCurso } from "../../services/cursos";
 
@@ -8,11 +10,12 @@ export default function UpdateCurso() {
   const [nome, setNome] = useState("");
 
   useEffect(() => {
-    (async () => {
+    async function load() {
       const r = await getCursos();
-      const item = r.data.find((c) => c.id == id);
-      setNome(item.nome);
-    })();
+      const curso = r.data.find((c) => c.id == id);
+      setNome(curso.nome);
+    }
+    load();
   }, []);
 
   async function salvar() {
@@ -21,41 +24,28 @@ export default function UpdateCurso() {
   }
 
   async function excluir() {
-    Alert.alert("Confirmar", "Deseja realmente excluir?", [
+    Alert.alert("Confirmar", "Deseja excluir este curso?", [
       { text: "Cancelar" },
-      {
-        text: "Excluir",
-        onPress: async () => {
+      { text: "Excluir", style: "destructive", onPress: async () => {
           await deleteCurso(id);
           router.back();
-        },
-      },
+        }}
     ]);
   }
 
   return (
-    <View className="flex-1 p-6 bg-white">
-      <Text className="text-3xl font-bold text-primary mb-6">
-        Editar Curso
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Editar Curso</Text>
 
-      <TextInput
-        value={nome}
-        onChangeText={setNome}
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-6"
-      />
+      <Input value={nome} onChangeText={setNome} />
 
-      <TouchableOpacity className="bg-primary py-3 rounded-xl mb-3" onPress={salvar}>
-        <Text className="text-center text-white font-semibold text-lg">
-          Salvar
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity className="bg-red-600 py-3 rounded-xl" onPress={excluir}>
-        <Text className="text-center text-white font-semibold text-lg">
-          Excluir
-        </Text>
-      </TouchableOpacity>
+      <Button title="Salvar" onPress={salvar} />
+      <Button title="Excluir" color="#dc2626" onPress={excluir} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 24, backgroundColor: "#fff" },
+  title: { fontSize: 28, fontWeight: "700", color: "#2563eb", marginBottom: 20 },
+});

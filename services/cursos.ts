@@ -1,18 +1,23 @@
-import api from "./api";
+import { mockCursos } from "./mock";
 
-export function getCursos() {
-  return api.get("/cursos");
+let cursos = [...mockCursos];
+
+export async function getCursos() {
+  return { data: cursos };
 }
 
-export function createCurso(data) {
-  return api.post("/cursos", data);
+export async function createCurso(novo) {
+  const id = cursos.length + 1;
+  cursos.push({ id, ...novo });
+  return { data: { success: true } };
 }
 
-export function updateCurso(id, data) {
-  return api.put(`/cursos/${id}`, data);
+export async function updateCurso(id, atualizado) {
+  cursos = cursos.map((c) => (c.id == id ? { ...c, ...atualizado } : c));
+  return { data: { success: true } };
 }
 
-export function deleteCurso(id) {
-  return api.delete(`/cursos/${id}`);
+export async function deleteCurso(id) {
+  cursos = cursos.filter((c) => c.id != id);
+  return { data: { success: true } };
 }
-
