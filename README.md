@@ -1,50 +1,97 @@
-# Welcome to your Expo app 👋
+# 📘 SkillUp Mobile  
+### Plataforma de Requalificação Profissional com Inteligência Artificial  
+Aplicativo desenvolvido em **React Native + Expo** como parte do projeto interdisciplinar da faculdade.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+---
 
-## Get started
+# 🚀 Visão Geral
 
-1. Install dependencies
+O **SkillUp Mobile** é um aplicativo focado na **requalificação profissional**, ajudando usuários a encontrar cursos, trilhas de aprendizado e informações relevantes para o futuro do trabalho.
 
-   ```bash
-   npm install
-   ```
+O app integra:
 
-2. Start the app
+- 📱 **Frontend Mobile (React Native + Expo)**
+- ⚙️ **API REST (Java ou .NET)** para CRUD de cursos
+- 🔐 **Sistema de autenticação**
+- 📦 **Publicação via Firebase App Distribution**
 
-   ```bash
-   npx expo start
-   ```
+O projeto está alinhado aos:
 
-In the output, you'll find options to open the app in a
+- **ODS 4** – Educação de Qualidade  
+- **ODS 8** – Trabalho Decente e Crescimento Econômico  
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+# 🎯 Objetivo do Aplicativo
 
-## Get a fresh project
+O SkillUp oferece:
 
-When you're ready, run:
+- Recomendação de cursos (via API)
+- Cadastro, edição e exclusão de cursos (CRUD)
+- Informações sobre trilhas e requalificação profissional
+- Suporte para autenticação real (login/logout)
+- Interface simples, moderna e eficiente
 
-```bash
-npm run reset-project
-```
+O sistema foi projetado para promover inclusão digital e ajudar profissionais em transição de carreira.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+# 📱 Funcionalidades
 
-To learn more about developing your project with Expo, look at the following resources:
+| Funcionalidade | Descrição |
+|---------------|-----------|
+| 🟦 Login | Autenticação do usuário |
+| 🟩 Signup | Criação de conta |
+| 🏠 Home | Navegação principal |
+| 📚 Cursos | Listagem de cursos da API |
+| ➕ Criar Curso | Opera o método POST |
+| ✏️ Editar Curso | Opera PUT e DELETE |
+| 👤 Perfil | Dados do usuário e logout |
+| ℹ️ Sobre | Informações do app e commit hash |
+| 🚀 Publicação | Suporte a Firebase App Distribution |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+# 🧩 Tecnologias Utilizadas
 
-Join our community of developers creating universal apps.
+### **Frontend**
+- React Native
+- Expo
+- Expo Router (navegação por arquivos)
+- Axios (requisições HTTP)
+- AsyncStorage (persistência local)
+- StyleSheet para estilização
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### **Backend (conectado via API)**
+- Java + Spring Boot **ou** .NET Web API
+- Endpoints REST para cursos
+
+---
+
+# ⚙️ Configuração do Axios
+
+export const api = axios.create({
+  baseURL: "http://SEU_IP_LOCAL:8080",
+});
+
+No celular NÃO USAR localhost.
+
+---
+
+# 🛠️ Como Rodar o Projeto
+
+### 1️⃣ Instalar dependências
+
+- npm install
+
+### 2️⃣ Rodar o app
+
+- npx expo start
+
+---
+
+# 👤 Integrantes
+
+- RM556588 - Gabriel Yuji Suzuki
+- RM97677 - Lucas Felix Vassiliades
+- RM556972 - Gabriel Duarte Pinto
